@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/new_vehicle_form_style.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
+
+
+        <form th:action="@{/vehicles/save}" method="post" th:object="${vehicle}"
+        style="max-width: 500px; margin: 0 auto;">
+
+            <div class="border border-5 border-primary rounded p-3">
+                <div class="form-floating mb-2">
+                    <input type="text" th:field="*{licensePlate}" class="form-control" id="license_plate" placeholder="License plate" minlength="7" maxlength="7" required/>
+                    <label for="license_plate">License plate</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <input type="text" th:field="*{brand}" class="form-control" id="brand" placeholder="Brand" minlength="3" required/>
+                    <label for="brand">Brand</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <input type="text" th:field="*{model}" class="form-control" id="model" placeholder="Model" minlength="1" required/>
+                    <label for="model">Model</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <input type="text" th:field="*{color}" class="form-control" id="color" placeholder="Color" minlength="3" required/>
+                    <label for="color">Color</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <input type="number" th:field="*{power}" class="form-control" min="0" id="power" placeholder="Power" minlength="50" required/>
+                    <label for="power">Power</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <input type="number" th:field="*{priceDay}" step="0.10" class="form-control" id="price_day" placeholder="Price per day" min="30" required/>
+                    <label for="price_day">Price per day</label>
+                </div>
+
+            </div>
+
+            <div class="mt-2">
+                <button type="submit" class="btn btn-primary" onclick="alertMessage()">[[${btnTitle}]]</button>
+                <button class="btn btn-secondary" onclick="location.href='/vehicles'">Cancel</button>
+            </div>
+
+        </form>
+
+</div>
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function alertMessage() {
+        alert('Vehicle added successfully.');
+    }
+</script>
+
+</body>
+</html>

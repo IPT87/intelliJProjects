@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vehicles</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/css/bootstrap.min.css}" type="text/css"/>
+    <link rel="stylesheet" href="/static/vehicles_table_style.css">
+</head>
+<body>
+    <div class="container-fluid text-center">
+        <div>
+            <h2>All vehicles</h2>
+        </div>
+
+        <div>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>License plate</th>
+                        <th>Brand</th>
+                        <th>Model</th>
+                        <th>Color</th>
+                        <th>Power</th>
+                        <th>Price per day</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="vehicle : ${vehicleList}">
+                        <tr>
+                            <td>[[${vehicle.licensePlate}]]</td>
+                            <td>[[${vehicle.brand}]]</td>
+                            <td>[[${vehicle.model}]]</td>
+                            <td>[[${vehicle.color}]]</td>
+                            <td>[[${vehicle.power}]]</td>
+                            <td>[[${vehicle.priceDay}]]</td>
+                            <td>
+                                <a style="color: deepskyblue" th:href="@{'/modify/' + ${vehicle.licensePlate}}">Modify</a>
+                            </td>
+                            <td>
+                                <a style="color: red" th:href="@{'/delete/' + ${vehicle.licensePlate}}">Delete</a>
+                            </td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <button class="btn-primary m-2" id="toFormBtn">Add vehicle</button>
+    </div>
+
+<script type="text/javascript">
+    document.getElementById("toFormBtn").onclick = function () {
+        location.href = "/vehicle/new";
+    }
+</script>
+
+</body>
+</html>
